@@ -15,9 +15,9 @@
 #
 CONF_PARAMS = -set iccm_enable
 # Check for RV_ROOT
-ifeq (,$(wildcard ${RV_ROOT}/configs/veer.config))
-$(error env var RV_ROOT does not point to a valid dir! Exiting!)
-endif
+#ifeq (,$(wildcard ${RV_ROOT}/configs/veer.config))
+#$(error env var RV_ROOT does not point to a valid dir! Exiting!)
+#endif
 
 TEST_CFLAGS = -g -O3 -funroll-all-loops
 ABI = -mabi=ilp32 -march=rv32imc_zicsr
