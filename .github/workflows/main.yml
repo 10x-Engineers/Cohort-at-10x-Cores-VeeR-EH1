@@ -31,14 +31,12 @@ jobs:
           wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2024.03.01/riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
           echo "Extracting toolchain....."
           tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
-          echo "Updating PATH variable...."
+          cd ./riscv/bin && export RISCV="$(pwd)" && cd ..
           echo "RISCV binaries are in $RISCV"
-          cd ./riscv/bin && export RISCV="$(pwd)"
           echo "Adding it to the PATH variable...."
           export PATH="${PATH}:${RISCV}"
           echo "Checking..... $PATH"
           echo "All dependencies have been installed..."
-          cd ${RV_ROOT}
           echo "Configuring Veer..." && ${RV_ROOT}/configs/veer.config
           echo "Running RTL Simulation now...." && sudo ${RV_ROOT}/run_smoke
 
