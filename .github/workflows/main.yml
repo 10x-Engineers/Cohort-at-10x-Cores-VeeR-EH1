@@ -41,5 +41,5 @@ jobs:
 
       - name: Run RTL Simulation
         run: |
-          export RV_ROOT=${{ env.RV_ROOT}
-          echo "Running RTL Simulation now...." && sudo ${{ env.RV_ROOT}/run_smoke
+          export RV_ROOT=${{ env.RV_ROOT}}
+          echo "Running RTL Simulation now...." && sudo ${{ env.RV_ROOT}}/run_smoke
