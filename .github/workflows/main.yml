@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  WORKSPACE_ROOT:  ${{ github.workspace }}
+  RV_ROOT:  ${{ github.workspace }}
 
 jobs:
   veer-job:
@@ -38,12 +38,9 @@ jobs:
 
       - name: Configure Veer
         run: | 
-          export RV_ROOT="/home/runner/work/Cohort-at-10x-Cores-VeeR-EH1/Cohort-at-10x-Cores-VeeR-EH1"
           echo "Configuring Veer..." && ${RV_ROOT}/configs/veer.config
 
       - name: Run RTL Simulation
         run: |
-          export RV_ROOT="/home/runner/work/Cohort-at-10x-Cores-VeeR-EH1/Cohort-at-10x-Cores-VeeR-EH1"
-          ls -al
-          echo "Running RTL Simulation now...." && sudo  make -f ${RV_ROOT}/tools/Makefile TEST=example_c_test
+          echo "Running RTL Simulation now...." && sudo make ${RV_ROOT}/run_smoke
 
