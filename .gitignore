@@ -46,3 +46,12 @@ unit_level_testbench/pic/workspace/simulation/sim
 tools/codegenerators/AAPGV2/swerv/asm/out*
 tools/codegenerators/AAPGV2/swerv/bin/out*
 tools/codegenerators/AAPGV2/swerv/objdump/out*
+*.dis
+*.hex
+*.map
+*.exe
+*.cpp.s
+obj_dir
+crt0.cpp.s
+trace_port.csv
+verilator-build
