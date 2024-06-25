@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Veer Pipeline
 
 on:
   pull_request:
@@ -40,4 +40,6 @@ jobs:
         run: echo "Configuring Veer..." && ${{ env.RV_ROOT }}/configs/veer.config
 
       - name: Run RTL Simulation
-        run: echo "Running RTL Simulation now...." && sudo ${{ env.RV_ROOT }}/run_smoke
+        run: |
+          export RV_ROOT=${{ env.RV_ROOT}
+          echo "Running RTL Simulation now...." && sudo ${{ env.RV_ROOT}/run_smoke
