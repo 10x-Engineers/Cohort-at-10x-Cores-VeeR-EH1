@@ -38,6 +38,7 @@ jobs:
           export PATH="${PATH}:${RISCV}"
           echo "Checking..... $PATH"
           echo "All dependencies have been installed..."
+          cd ${RV_ROOT}
           echo "Configuring Veer..." && ${RV_ROOT}/configs/veer.config
           echo "Running RTL Simulation now...." && sudo ${RV_ROOT}/run_smoke
 
