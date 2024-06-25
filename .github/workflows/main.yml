@@ -40,6 +40,6 @@ jobs:
         run: echo "Configuring Veer..." && ${{ env.RV_ROOT }}/configs/veer.config
 
       - name: Run RTL Simulation
-        run: |
-          export RV_ROOT=${{ env.RV_ROOT}}
-          echo "Running RTL Simulation now...." && sudo ${{ env.RV_ROOT}}/run_smoke
+        run: 
+          echo "Running RTL Simulation now...." && sudo  make -f ${{ env.RV_ROOT}}/tools/Makefile TEST=example_c_test
+
