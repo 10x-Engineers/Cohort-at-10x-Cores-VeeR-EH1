@@ -20,7 +20,7 @@ $(error env var RV_ROOT does not point to a valid dir! Exiting!)
 endif
 
 TEST_CFLAGS = -g -O3 -funroll-all-loops
-ABI = -mabi=ilp32 -march=rv32imc
+ABI = -mabi=ilp32 -march=rv32imc_zicsr
 
 # Allow snapshot override
 target = default
@@ -73,8 +73,8 @@ TBFILES = $(TBDIR)/tb_top.sv $(TBDIR)/ahb_sif.sv
 defines = $(BUILD_DIR)/common_defines.vh ${RV_ROOT}/design/include/veer_types.sv
 includes = -I${RV_ROOT}/design/include -I${RV_ROOT}/design/lib  -I${BUILD_DIR}
 
-# CFLAGS for verilator generated Makefiles. Without -std=c++11 it complains for `auto` variables
-CFLAGS += "-std=c++11"
+# CFLAGS for verilator generated Makefiles. Without -std=c++14 it complains for `auto` variables
+CFLAGS += "-std=c++14"
 # Optimization for better performance; alternative is nothing for slower runtime (faster compiles)
 # -O2 for faster runtime (slower compiles), or -O for balance.
 VERILATOR_MAKE_FLAGS = OPT_FAST="-Os"
