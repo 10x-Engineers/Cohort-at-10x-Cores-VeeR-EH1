@@ -42,5 +42,5 @@ jobs:
 
       - name: Run RTL Simulation
         run: |
-          echo "Running RTL Simulation now...." && sudo make ${RV_ROOT}/run_smoke
+          echo "Running RTL Simulation now...." && sudo ${RV_ROOT}/run_smoke
 
