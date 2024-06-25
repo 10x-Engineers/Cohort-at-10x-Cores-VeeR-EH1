@@ -32,8 +32,8 @@ jobs:
           echo "Extracting toolchain....."
           tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
           echo "Updating PATH variable...."
-          cd ./riscv/bin && echo "RISCV=$(pwd)" >> $GITHUB_ENV
-          echo "$RISCV/bin" >> $GITHUB_PATH
+          cd ./riscv/bin && echo "RISCV=$(pwd)" >> ~/.bashrc
+          source ~/.bashrc
           echo "All dependencies have been installed..."
 
       - name: Configure Veer
