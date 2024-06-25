@@ -21,13 +21,13 @@ jobs:
         run: |
           export RV_ROOT="$(pwd)"
           echo "Installing dependencies...."
-          sudo apt -y install git make help2man perl python3 make autoconf g++ flex bison ccache zlib1g-dev patchutils wget
-          sudo apt -y install automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk texinfo gperf bc libunwind-dev
-          sudo apt -y install libgoogle-perftools-dev numactl perl-doc libfl2 libfl-dev libexpat-dev libtool libjson-perl
-          sudo apt-get install --reinstall $(readlink $(which g++))
-          sudo apt -y install build-essential device-tree-compiler
+          sudo apt-get -y install git make help2man perl python3 make autoconf g++ flex bison ccache zlib1g-dev patchutils wget
+          sudo apt-get -y install automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk texinfo gperf bc libunwind-dev
+          sudo apt-get -y install libgoogle-perftools-dev numactl perl-doc libfl2 libfl-dev libexpat-dev libtool libjson-perl
+          sudo apt-get-get install --reinstall $(readlink $(which g++))
+          sudo apt-get -y install build-essential device-tree-compiler
           echo "Installing Verilator....."
-          sudo apt -y install verilator
+          sudo apt-get -y install verilator
           echo "Getting riscv toolchain....."
           wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2023.07.05/riscv64-elf-ubuntu-22.04-gcc-nightly-2023.07.05-nightly.tar.gz
           echo "Extracting toolchain....."
