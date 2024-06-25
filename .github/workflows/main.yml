@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up dependencies
+      - name: brute force run
         run: |
           echo "Installing dependencies...."
           sudo apt -y update
@@ -32,16 +32,12 @@ jobs:
           echo "Extracting toolchain....."
           tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
           echo "Updating PATH variable...."
+          echo "RISCV binaries are in $RISCV"
           cd ./riscv/bin && export RISCV="$(pwd)"
+          echo "Adding it to the PATH variable...."
           export PATH="${PATH}:${RISCV}"
-          source ~/.bashrc
+          echo "Checking..... $PATH"
           echo "All dependencies have been installed..."
-
-      - name: Configure Veer
-        run: | 
           echo "Configuring Veer..." && ${RV_ROOT}/configs/veer.config
-
-      - name: Run RTL Simulation
-        run: |
           echo "Running RTL Simulation now...." && sudo ${RV_ROOT}/run_smoke
 
