@@ -1109,6 +1109,11 @@ endfunction
 /* verilator lint_on WIDTH */
 
 
+initial begin
+	$dumpfile("sim.vcd");
+	$dumpvars;
+end
+
 endmodule
 `ifdef RV_BUILD_AXI4
 `include "axi_lsu_dma_bridge.sv"
