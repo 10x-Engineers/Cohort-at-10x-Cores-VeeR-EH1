@@ -1,2 +1,2 @@
 export RV_ROOT="$(pwd)"
-make -f ${RV_ROOT}/tools/Makefile
+ make -f $RV_ROOT/tools/Makefile TEST=example_asm_test
