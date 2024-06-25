@@ -32,7 +32,8 @@ jobs:
           echo "Extracting toolchain....."
           tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
           echo "Updating PATH variable...."
-          cd ./riscv/bin && echo "RISCV=$(pwd)" >> ~/.bashrc
+          cd ./riscv/bin && export RISCV="$(pwd)"
+          export PATH="${PATH}:${RISCV}"
           source ~/.bashrc
           echo "All dependencies have been installed..."
 
