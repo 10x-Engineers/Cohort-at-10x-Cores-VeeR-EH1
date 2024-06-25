@@ -33,7 +33,7 @@ jobs:
           echo "Extracting toolchain....."
           tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
           echo "Toolchain extraction done......."
-          cd ./riscv/bin && ls && export RISCV="$(pwd)" && cd ../../
+          cd ./riscv/bin && export RISCV="$(pwd)" && sudo cp ./riscv64-unknown-elf-gcc /usr/bin && sudo cp ./riscv64-unknown-elf-cpp /usr/bin && cd ../../
           echo "RISCV binaries are in $RISCV"
           echo "Adding it to the PATH variable...."
           export PATH="${PATH}:${RISCV}"
