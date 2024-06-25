@@ -16,6 +16,7 @@
 CONF_PARAMS = -set iccm_enable
 # Check for RV_ROOT
 ifeq (,$(wildcard ${RV_ROOT}/configs/veer.config))
+ bash -c "Your path is ${RV_ROOT}"
  $(error env var RV_ROOT does not point to a valid dir! Exiting!)
 endif
 
