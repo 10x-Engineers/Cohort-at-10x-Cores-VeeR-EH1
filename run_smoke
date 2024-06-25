@@ -1,5 +1,1 @@
-#!/usr/bin/bash
-
-export RV_ROOT="$(pwd)"
-echo ${RV_ROOT}
 make -f ${RV_ROOT}/tools/Makefile
