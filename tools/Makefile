@@ -28,11 +28,7 @@ snapshot = $(target)
 
 # Allow tool override
 VEER_CONFIG = ${RV_ROOT}/configs/veer.config
-IRUN = xrun
-VCS = vcs
 VERILATOR = verilator
-VLOG = qverilog
-RIVIERA = riviera
 GCC_PREFIX = riscv64-unknown-elf
 BUILD_DIR = snapshots/${snapshot}
 TBDIR = ${RV_ROOT}/testbench
@@ -49,11 +45,7 @@ endif
 
 ifdef debug
  DEBUG_PLUS = +dumpon
- IRUN_DEBUG = -access +rc
- IRUN_DEBUG_RUN = -input ${RV_ROOT}/testbench/input.tcl
- VCS_DEBUG = -debug_access
  VERILATOR_DEBUG = --trace
- RIVIERA_DEBUG = +access +r
 endif
 
 # provide specific link file
@@ -105,54 +97,10 @@ verilator-build: ${TBFILES} ${BUILD_DIR}/defines.h test_tb_top.cpp
 	$(MAKE) -j -C obj_dir/ -f Vtb_top.mk $(VERILATOR_MAKE_FLAGS)
 	touch verilator-build
 
-vcs-build: ${TBFILES} ${BUILD_DIR}/defines.h
-	$(VCS) -full64 -assert svaext -sverilog +error+500 \
-                +incdir+${RV_ROOT}/design/lib \
-                +incdir+${RV_ROOT}/design/include \
-		+incdir+${BUILD_DIR}  +libext+.v\
-		 $(defines) -f ${RV_ROOT}/testbench/flist\
-		 ${TBFILES} \
-		 -l vcs_compile.log
-	touch vcs-build
-
-irun-build: ${TBFILES} ${BUILD_DIR}/defines.h
-	$(IRUN) -64bit -elaborate $(IRUN_DEBUG) -q -sv -sysv  -nowarn CUVIHR -xmlibdirpath . -xmlibdirname veer.build \
-		-incdir ${RV_ROOT}/design/lib -incdir ${RV_ROOT}/design/include -incdir ${BUILD_DIR} -vlog_ext +.vh+.h\
-		$(defines)  -f ${RV_ROOT}/testbench/flist\
-		-top tb_top  ${TBFILES} -I${RV_ROOT}/testbench \
-		 -elaborate  -snapshot $(snapshot) $(profile)
-	touch irun-build
-
-riviera-build: ${TBFILES} ${BUILD_DIR}/defines.h
-	vlib work
-	vlog -work work \
-		+incdir+${RV_ROOT}/design/lib \
-		+incdir+${RV_ROOT}/design/include \
-		+incdir+${BUILD_DIR} +libext+.v $(defines) \
-		-f ${RV_ROOT}/testbench/flist \
-		${TBFILES}
-	touch riviera-build
-
 ##################### Simulation Runs #####################################
 
 verilator: program.hex verilator-build
 	./obj_dir/Vtb_top ${DEBUG_PLUS}
-
-irun: program.hex irun-build
-	$(IRUN) -64bit +lic_queue -licqueue -status -xmlibdirpath . -xmlibdirname veer.build \
-		 -snapshot ${snapshot} -r ${snapshot} $(IRUN_DEBUG_RUN) $(profile)
-
-vcs: program.hex vcs-build
-	./simv $(DEBUG_PLUS) +vcs+lic+wait -l vcs.log
-
-vlog: program.hex ${TBFILES} ${BUILD_DIR}/defines.h
-	$(VLOG) -l vlog.log -sv -mfcu +incdir+${BUILD_DIR}+${RV_ROOT}/design/include+${RV_ROOT}/design/lib\
-        $(defines) -f ${RV_ROOT}/testbench/flist ${TBFILES} -R +nowarn3829 ${DEBUG_PLUS}
-
-riviera: program.hex riviera-build
-	vsim -c -lib work ${DEBUG_PLUS} ${RIVIERA_DEBUG} tb_top -do "run -all; exit" -l riviera.log
-
-
 
 ##################### Test Build #####################################
 
@@ -185,6 +133,6 @@ endif
 
 help:
 	@echo Make sure the environment variable RV_ROOT is set.
-	@echo Possible targets: verilator vcs irun vlog riviera help clean all verilator-build irun-build vcs-build riviera-build program.hex
+	@echo Possible targets: verilator help clean all verilator-build program.hex
 
 .PHONY: help clean verilator vcs irun vlog riviera
