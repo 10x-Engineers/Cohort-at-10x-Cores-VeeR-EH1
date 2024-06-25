@@ -38,7 +38,7 @@ jobs:
 
       - name: Configure Veer
         run: | 
-          export RV_ROOT=" ${{ env.WORKSPACE_ROOT }}"
+          export RV_ROOT="/home/runner/work/Cohort-at-10x-Cores-VeeR-EH1/Cohort-at-10x-Cores-VeeR-EH1"
           echo "Configuring Veer..." && ${RV_ROOT}/configs/veer.config
 
       - name: Run RTL Simulation
