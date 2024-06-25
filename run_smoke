@@ -1,2 +1,5 @@
+#!/usr/bin/bash
+
 export RV_ROOT="$(pwd)"
-make -f ${RV_ROOT}/tools/Makefile TEST=example_c_test
+echo ${RV_ROOT}
+make -f ${RV_ROOT}/tools/Makefile
