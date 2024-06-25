@@ -21,7 +21,6 @@ jobs:
         run: |
           export RV_ROOT="$(pwd)"
           echo "Installing dependencies....
-          sudo apt-get install gcc-riscv64-unknown-elf
           sudo apt-get -y install git make help2man perl python3 make autoconf g++ flex bison ccache zlib1g-dev patchutils wget
           sudo apt-get -y install automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk texinfo gperf bc libunwind-dev
           sudo apt-get -y install libgoogle-perftools-dev numactl perl-doc libfl2 libfl-dev libexpat-dev libtool libjson-perl
@@ -33,7 +32,7 @@ jobs:
           echo "Extracting toolchain....."
           tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
           echo "Toolchain extraction done......."
-          cd ./riscv/bin && export RISCV="$(pwd)" && sudo cp ./riscv64-unknown-elf-gcc /usr/bin && sudo cp ./riscv64-unknown-elf-cpp /usr/bin && cd ../../
+          cd ./riscv/bin && export RISCV="$(pwd)" && cd ../../
           echo "RISCV binaries are in $RISCV"
           echo "Adding it to the PATH variable...."
           export PATH="${PATH}:${RISCV}"
