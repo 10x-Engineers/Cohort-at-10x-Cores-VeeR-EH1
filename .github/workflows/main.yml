@@ -43,5 +43,6 @@ jobs:
 
       - name: Run RTL Simulation
         run: |
-          echo "Running RTL Simulation now...." && sudo  make -f  ${RV_ROOT}/tools/Makefile TEST=example_c_test
+          export RV_ROOT="/home/runner/work/Cohort-at-10x-Cores-VeeR-EH1/Cohort-at-10x-Cores-VeeR-EH1"
+          echo "Running RTL Simulation now...." && sudo  make -f ${RV_ROOT}/tools/Makefile TEST=example_c_test
 
