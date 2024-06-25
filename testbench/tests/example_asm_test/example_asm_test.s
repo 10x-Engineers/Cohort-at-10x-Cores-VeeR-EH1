@@ -28,6 +28,8 @@
 .global _start
 _start:
 
+.option norvc
+
     // Clear minstret
     csrw minstret, zero
     csrw minstreth, zero
@@ -41,6 +43,15 @@ _start:
     li x1, 0x5f555555
     csrw 0x7c0, x1
 
+.option rvc
+    
+    nop
+    nop
+    li a0, 5
+    li a0, 10
+
+
+.option norvc
     // Load string from hw_data
     // and write to stdout address
 
