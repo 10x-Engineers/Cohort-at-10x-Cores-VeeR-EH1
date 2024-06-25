@@ -51,6 +51,7 @@ tools/codegenerators/AAPGV2/swerv/objdump/out*
 *.map
 *.exe
 *.cpp.s
+*.vcd
 obj_dir
 crt0.cpp.s
 trace_port.csv
