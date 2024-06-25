@@ -37,9 +37,9 @@ jobs:
           echo "All dependencies have been installed..."
 
       - name: Configure Veer
-        run: echo "Configuring Veer..." && ${RV_ROOT}/configs/veer.config
+        run: echo "Configuring Veer..." &&  ${{ env.RV_ROOT }}/configs/veer.config
 
       - name: Run RTL Simulation
         run: 
-          echo "Running RTL Simulation now...." && sudo  make -f ${RV_ROOT}/tools/Makefile TEST=example_c_test
+          echo "Running RTL Simulation now...." && sudo  make -f  ${{ env.RV_ROOT }}/tools/Makefile TEST=example_c_test
 
