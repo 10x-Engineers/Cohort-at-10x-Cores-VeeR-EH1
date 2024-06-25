@@ -30,7 +30,7 @@ jobs:
           echo "Getting riscv toolchain....."
           wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2024.04.12/riscv64-elf-ubuntu-20.04-gcc-nightly-2024.04.12-nightly.tar.gz
           echo "Extracting toolchain....."
-          tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
+          tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.04.12-nightly.tar.gz
           cd ./riscv/bin && export RISCV="$(pwd)" && sudo mv ./* /usr/bin/ && cd ../../
           echo "RISCV binaries are in $RISCV"
           echo "Adding it to the PATH variable...."
