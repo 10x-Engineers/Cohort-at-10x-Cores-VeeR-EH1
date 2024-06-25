@@ -1,1 +1,45 @@
+stages:          # List of stages for jobs, and their order of execution
+  - run
 
+variables:
+  RV_ROOT: $CI_PROJECT_DIR
+
+.standard-rules:       # Make a hidden job to hold the common rules
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+veer-job:
+  
+  extends:
+    - .standard-rules  # Reuse the configuration in `.standard-rules` here
+  
+  image: ubuntu:latest
+  
+  stage: run
+
+  before_script:
+    - echo "Installing dependencies...."
+    - apt -y update
+    - apt -y install git make help2man perl python3 make autoconf g++ flex bison ccache zlib1g-dev patchutils wget
+    - apt -y install  automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk texinfo gperf bc
+    - apt -y install libgoogle-perftools-dev numactl perl-doc libfl2 libfl-dev libexpat-dev libtool libjson-perl
+    - apt -y install build-essential device-tree-compiler
+    - echo "Installing Verilator....."
+    - apt -y install verilator
+    - echo "Getting riscv toolchain....."
+    - wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2024.03.01/riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
+    - echo "Extracting toolchain....."
+    - tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz 
+    - echo "Updating PATH variable...."
+    - cd ./riscv/bin && export RISCV="$(pwd)"
+    - export PATH="${PATH}:${RISCV}"
+    - echo "All dependencies have been installed..."
+
+  script:
+    - echo "Configuring Veer..."
+    - $RV_ROOT/configs/veer.config
+
+  after_script:
+    - echo "Running RTL Simulation now...."
+    - $RV_ROOT/run_smoke
