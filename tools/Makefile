@@ -45,8 +45,9 @@ endif
 
 ifdef debug
  DEBUG_PLUS = +dumpon
- VERILATOR_DEBUG = --trace
 endif
+
+VERILATOR_DEBUG = --trace
 
 # provide specific link file
 ifeq (,$(wildcard $(TEST_DIR)/$(TEST).ld))
