@@ -28,7 +28,14 @@ jobs:
           echo "Installing Verilator....."
           sudo apt -y install verilator
           echo "Getting riscv toolchain....."
-          sudo apt -y install gcc-riscv64-unknown-elf
+          wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2024.03.01/riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
+          echo "Extracting toolchain....."
+          tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.03.01-nightly.tar.gz
+          cd ./riscv/bin && export RISCV="$(pwd)" && cd ../../
+          echo "RISCV binaries are in $RISCV"
+          echo "Adding it to the PATH variable...."
+          export PATH="${PATH}:${RISCV}"
+          echo "Checking..... $PATH"
           echo "All dependencies have been installed..."
           echo "Configuring Veer..."
           ${RV_ROOT}/configs/veer.config
