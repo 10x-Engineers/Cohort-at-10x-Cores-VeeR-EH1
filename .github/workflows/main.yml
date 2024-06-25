@@ -29,9 +29,9 @@ jobs:
           echo "Installing Verilator....."
           sudo apt -y install verilator
           echo "Getting riscv toolchain....."
-          wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2024.04.12/riscv64-elf-ubuntu-20.04-gcc-nightly-2024.04.12-nightly.tar.gz
+          wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2023.07.05/riscv64-elf-ubuntu-22.04-gcc-nightly-2023.07.05-nightly.tar.gz
           echo "Extracting toolchain....."
-          tar -zxvf ./riscv64-elf-ubuntu-20.04-gcc-nightly-2024.04.12-nightly.tar.gz
+          tar -zxvf ./riscv64-elf-ubuntu-22.04-gcc-nightly-2023.07.05-nightly.tar.gz
           cd ./riscv/bin && export RISCV="$(pwd)" && sudo mv ./* /usr/bin/ && cd ../../
           echo "RISCV binaries are in $RISCV"
           echo "Adding it to the PATH variable...."
