@@ -40,4 +40,4 @@ jobs:
         run: echo "Configuring Veer..." && ${{ env.RV_ROOT }}/configs/veer.config
 
       - name: Run RTL Simulation
-        run: echo "Running RTL Simulation now...." && ${{ env.RV_ROOT }}/run_smoke
+        run: echo "Running RTL Simulation now...." && sudo ${{ env.RV_ROOT }}/run_smoke
