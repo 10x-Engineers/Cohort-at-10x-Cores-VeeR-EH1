@@ -39,7 +39,5 @@ jobs:
           echo "All dependencies have been installed..."
           echo "Configuring Veer..."
           ${RV_ROOT}/configs/veer.config
-          cd ${RV_ROOT}
-          ls -al
-          echo "Running RTL Simulation now...." 
-          sudo make -f ${RV_ROOT}/tools/Makefile
+          echo "Running Smoke Simulation now...." 
+          sudo ${RV_ROOT}/run_smoke
