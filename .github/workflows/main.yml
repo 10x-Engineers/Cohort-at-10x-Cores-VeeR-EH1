@@ -28,7 +28,7 @@ jobs:
           echo "Installing Verilator....."
           sudo apt -y install verilator
           echo "Getting riscv toolchain....."
-          sudo apt isntall gcc-riscv64-unknown-elf
+          sudo apt -y install gcc-riscv64-unknown-elf
           echo "All dependencies have been installed..."
           echo "Configuring Veer..."
           ${RV_ROOT}/configs/veer.config
