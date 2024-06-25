@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  RV_ROOT:  $GITHUB_WORKSPACE
+  RV_ROOT:  ${{ github.workspace }}
 
 jobs:
   veer-job:
