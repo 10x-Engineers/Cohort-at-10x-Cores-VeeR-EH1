@@ -20,7 +20,7 @@ jobs:
       - name: brute force run
         run: |
           pwd
-          la -al
+          ls -al
           echo "Installing dependencies...."
           sudo apt -y update
           sudo apt -y install git make help2man perl python3 make autoconf g++ flex bison ccache zlib1g-dev patchutils wget
