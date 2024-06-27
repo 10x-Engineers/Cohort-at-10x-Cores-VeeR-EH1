@@ -197,7 +197,7 @@ module lsu_lsc_ctl
   );
 
    // Calculate start/end address for load/store
-   assign addr_offset_dc1[2:0]      = ({3{lsu_pkt_dc1.half}} & 3'b01) | ({3{lsu_pkt_dc1.word}} & 3'b11) | ({3{lsu_pkt_dc1.dword}} & 3'b111);
+   assign addr_offset_dc1[2:0]      = lsu_pkt_dc1.byte ? 3'b11 : ({3{lsu_pkt_dc1.half}} & 3'b01) | ({3{lsu_pkt_dc1.word}} & 3'b11) | ({3{lsu_pkt_dc1.dword}} & 3'b111);
    assign end_addr_offset_dc1[12:0] = {offset_dc1[11],offset_dc1[11:0]} + {9'b0,addr_offset_dc1[2:0]};
    assign full_end_addr_dc1[31:0]   = rs1_dc1[31:0] + {{19{end_addr_offset_dc1[12]}},end_addr_offset_dc1[12:0]};
    assign end_addr_dc1[31:0]        = full_end_addr_dc1[31:0];
