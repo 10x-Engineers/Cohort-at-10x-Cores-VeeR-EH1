@@ -340,11 +340,11 @@ module tb_top;
         if(mailbox_write && WriteData[7:0] == 8'hff) begin
             $display("\nFinished : minstret = %0d, mcycle = %0d", `DEC.tlu.minstretl[31:0],`DEC.tlu.mcyclel[31:0]);
             $display("See \"exec.log\" for execution trace with register updates..\n");
-            $display("TEST_PASSED");
+            //$display("TEST_PASSED");
             $finish;
         end
         else if(mailbox_write && WriteData[7:0] == 8'h1) begin
-            $display("TEST_FAILED");
+           // $display("TEST_FAILED");
             $finish;
         end
     end

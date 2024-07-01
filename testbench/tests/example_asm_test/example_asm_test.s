@@ -43,29 +43,36 @@ _start:
     li x1, 0x5f555555
     csrw 0x7c0, x1
 
-.option rvc
-    
-    nop
-    nop
-    li a0, 5
-    li a0, 10
+    // writing test cases here
 
 
-.option norvc
-    // Load string from hw_data
+    li a1, 0x1
+    li a2, 0x2
+//    mul a0, a1, a2
+    bge a2, a1, pass
+
+    // Load string from hw_fail_pass_data
+    // and write to stdout address
+    li x3, STDOUT
+    la x4, hw_fail_data
+    j _finish
+
+pass:
+    // Load string from hw_pass_data
     // and write to stdout address
 
     li x3, STDOUT
-    la x4, hw_data
+    la x4, hw_pass_data
 
-loop:
-   lb x5, 0(x4)
-   sb x5, 0(x3)
-   addi x4, x4, 1
-   bnez x5, loop
+
 
 // Write 0xff to STDOUT for TB to terminate test.
 _finish:
+    loop:
+     lb x5, 0(x4)
+     sb x5, 0(x3)
+     addi x4, x4, 1
+     bnez x5, loop
     li x3, STDOUT
     addi x5, x0, 0xff
     sb x5, 0(x3)
@@ -74,11 +81,19 @@ _finish:
     nop
 .endr
 
-.global hw_data
+.global hw_pass_data
 .data
-hw_data:
+hw_pass_data:
 .ascii "--------------------------------------------------------------------------\n"
-.ascii "                           Dear cohort members !                          \n"
-.ascii "          Use the file to write assembly directed testcases               \n"
+.ascii "          TEST PASSED                                                     \n"
+.ascii "--------------------------------------------------------------------------\n"
+.byte 0
+
+
+.global hw_fail_data
+.data
+hw_fail_data:
+.ascii "--------------------------------------------------------------------------\n"
+.ascii "          TEST FAILED                                                     \n"
 .ascii "--------------------------------------------------------------------------\n"
 .byte 0

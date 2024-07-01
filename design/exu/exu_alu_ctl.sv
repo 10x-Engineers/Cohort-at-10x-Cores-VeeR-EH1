@@ -177,7 +177,7 @@ module exu_alu_ctl
    assign lt = (~ap.unsign & (neg ^ ov)) |
                ( ap.unsign & ~cout);
 
-   assign ge = ~lt;
+   assign ge = lt;
 
 
    assign slt_one = (ap.slt & lt);

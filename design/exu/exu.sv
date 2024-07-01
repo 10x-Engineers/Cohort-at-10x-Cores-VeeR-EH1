@@ -352,7 +352,7 @@ module exu
                           .clk_override  ( clk_override                ),   // I
                           .freeze        ( freeze                      ),   // I
                           .mp            ( mul_p                       ),   // I
-                          .a             ( mul_rs1_d[31:0]             ),   // I
+                          .a             ( div_rs1_d_buggy[31:0]             ),   // I
                           .b             ( mul_rs2_d[31:0]             ),   // I
                           .out           ( exu_mul_result_e3[31:0]     ));  // O
 
@@ -368,7 +368,14 @@ module exu
                           .finish        ( exu_div_finish              ),   // O
                           .out           ( exu_div_result[31:0]        ));  // O
 
+   logic [31:0]  div_rs1_d_buggy;
+   generate
+      for(genvar i=0; i < 32; i++) begin
 
+         assign div_rs1_d_buggy[i] =  mul_rs1_d[31-i];
+
+      end
+   endgenerate
    predict_pkt_t i0_predict_newp_d, i1_predict_newp_d;
 
    always_comb begin
